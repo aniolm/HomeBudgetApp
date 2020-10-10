@@ -1,0 +1,6 @@
+/obj
+/bin
+HomeBudgetApp.*
+UserFile.xml
+IncomeFile.xml
+ExpenseFile.xml
