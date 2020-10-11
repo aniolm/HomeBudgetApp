@@ -9,3 +9,8 @@ UserFile::~UserFile()
 {
     //dtor
 }
+
+void UserFile::appendUserToFile(User)
+{
+    return;
+}
