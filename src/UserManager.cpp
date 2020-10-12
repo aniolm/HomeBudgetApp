@@ -71,3 +71,41 @@ bool UserManager::ifUsernameExists(string username)
     }
     return false;
 }
+
+void  UserManager::userLogin()
+{
+    User user;
+
+    string username = "", password = "";
+
+    cout << endl << "Enter username: ";
+    username = AuxMethods::getLine();
+
+    vector <User>::iterator itr = users.begin();
+    while (itr != users.end())
+    {
+        if (itr -> getUsername() == username)
+        {
+            for (int attemptsLeft = 3; attemptsLeft> 0; attemptsLeft--)
+            {
+                cout << "Enter password (attempts left: " << attemptsLeft << "): ";
+                password = AuxMethods::getLine();
+
+                if (itr -> getPassword() == password)
+                {
+                    cout << endl << "Login successful." << endl << endl;
+                    system("pause");
+                    loggedInUserId = itr -> getId();
+                    return;
+                }
+            }
+            cout << "Invalid password." << endl;
+            system("pause");
+            return;
+        }
+        itr++;
+    }
+    cout << "Username does not exist." << endl << endl;
+    system("pause");
+    return;
+}
