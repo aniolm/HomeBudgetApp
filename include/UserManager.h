@@ -17,6 +17,7 @@ class UserManager
         UserManager(string userFileName);
         void loadUsersFromFile();
         void registerUser();
+        void userLogin();
 
     protected:
 

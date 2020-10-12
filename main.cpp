@@ -7,5 +7,6 @@ int main()
 {
     UserManager userManager("UserFile.xml");
     userManager.registerUser();
+    userManager.userLogin();
     return 0;
 }
