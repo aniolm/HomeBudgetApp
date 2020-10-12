@@ -1,13 +1,13 @@
 #include "UserManager.h"
-
-UserManager::UserManager()
+UserManager::UserManager(string userFileName): userFile(userFileName)
 {
-    //ctor
+    loggedInUserId = 0;
+    loadUsersFromFile();
 }
 
-UserManager::~UserManager()
+void UserManager::loadUsersFromFile()
 {
-    //dtor
+    users = userFile.loadUsersFromFile();
 }
 
 void UserManager::registerUser()
