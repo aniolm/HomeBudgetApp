@@ -19,7 +19,7 @@ class User
         void setSurname(string val) { surname = val; }
         string getUsername() { return username; }
         void setUsername(string val) { username = val; }
-        string setPassword() { return password; }
+        string getPassword() { return password; }
         void setPassword(string val) { password = val; }
 
     protected:
