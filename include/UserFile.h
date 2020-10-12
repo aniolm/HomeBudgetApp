@@ -2,19 +2,21 @@
 #define USERFILE_H
 #include "Markup.h"
 #include "User.h"
+#include <vector>
 
 using namespace std;
 
 class UserFile
 {
     public:
-        UserFile();
-        virtual ~UserFile();
+        UserFile(string userFileName);
         void appendUserToFile(User);
+        vector <User> loadUsersFromFile();
 
     protected:
 
     private:
+        const string USER_FILE_NAME;
 };
 
 #endif // USERFILE_H

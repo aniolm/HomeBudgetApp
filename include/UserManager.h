@@ -14,9 +14,8 @@ using std::vector;
 class UserManager
 {
     public:
-        UserManager();
-        virtual ~UserManager();
-
+        UserManager(string userFileName);
+        void loadUsersFromFile();
         void registerUser();
 
     protected:
