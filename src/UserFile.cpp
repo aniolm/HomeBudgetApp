@@ -51,3 +51,27 @@ vector <User> UserFile::loadUsersFromFile()
     return users;
 
 }
+
+void UserFile::updateUserData(string field , string newData, int userId)
+{
+    CMarkup xml;
+    xml.Load( USER_FILE_NAME );
+    int xmlId = 0;
+    while ( xml.FindElem("USER" ))
+    {
+    xml.IntoElem();
+    xml.FindElem( "ID" );
+    xmlId = atoi( MCD_2PCSZ(xml.GetData())) ;
+    if (xmlId==userId)
+    {
+        xml.FindElem( field );
+        xml.SetData( newData);
+    }
+
+    xml.OutOfElem();
+
+    }
+    xml.Save( USER_FILE_NAME );
+    return;
+}
+
