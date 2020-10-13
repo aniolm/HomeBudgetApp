@@ -12,6 +12,7 @@ class UserFile
         UserFile(string userFileName);
         void appendUserToFile(User);
         vector <User> loadUsersFromFile();
+        void updateUserData(string field , string newData, int userId);
 
     protected:
 

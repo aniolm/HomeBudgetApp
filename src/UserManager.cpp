@@ -109,3 +109,21 @@ void  UserManager::userLogin()
     system("pause");
     return;
 }
+
+void UserManager::changeUserPassword()
+{
+    string newPassword = "";
+    cout << "Enter new password: ";
+    newPassword = AuxMethods::getLine();
+
+    for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++)
+    {
+        if (itr -> getId() == loggedInUserId)
+        {
+            itr -> setPassword(newPassword);
+            cout << "Password was successfully changed." << endl << endl;
+            system("pause");
+        }
+    }
+    userFile.updateUserData("PASSWORD" , newPassword ,loggedInUserId);
+}

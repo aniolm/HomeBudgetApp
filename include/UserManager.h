@@ -18,6 +18,7 @@ class UserManager
         void loadUsersFromFile();
         void registerUser();
         void userLogin();
+        void changeUserPassword();
 
     protected:
 
