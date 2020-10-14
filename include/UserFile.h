@@ -1,10 +1,14 @@
 #ifndef USERFILE_H
 #define USERFILE_H
+#include <iostream>
 #include "Markup.h"
 #include "User.h"
 #include <vector>
 
-using namespace std;
+using std::string;
+using std::vector;
+using std::cout;
+using std::endl;
 
 class UserFile
 {
