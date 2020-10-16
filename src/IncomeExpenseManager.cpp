@@ -2,7 +2,8 @@
 
 IncomeExpenseManager::IncomeExpenseManager(string incomeFileName, string expenseFileName): incomeFile(incomeFileName), expenseFile(expenseFileName)
 {
-
+   incomes=incomeFile.loadEntriesFromFile();
+   expenses=expenseFile.loadEntriesFromFile();
 }
 
 void IncomeExpenseManager::addEntry(int loggedInUserId, int type)
@@ -38,11 +39,13 @@ Entry IncomeExpenseManager::inputNewEntryData(int loggedInUserId, int type)
 
     if(type==0)
     {
+        incomeFile.getLastEntryIdFromFile();
         entry.setId(incomeFile.getLastEntryId()+1);
     }
 
     else if (type==1)
     {
+        expenseFile.getLastEntryIdFromFile();
         entry.setId(expenseFile.getLastEntryId()+1);
     }
 
@@ -84,4 +87,53 @@ Entry IncomeExpenseManager::inputNewEntryData(int loggedInUserId, int type)
     }
 
     return entry;
+}
+
+void IncomeExpenseManager::showAllIncomes()
+{
+    system("cls");
+    if (!incomes.empty())
+    {
+        cout << "             >>> INCOMES <<<" << endl;
+        cout << "-----------------------------------------------" << endl;
+        for (vector <Entry> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++)
+        {
+            showEntryData(*itr);
+        }
+        cout << endl;
+    }
+    else
+    {
+        cout << endl << "No incomes registered." << endl << endl;
+    }
+    system("pause");
+}
+
+void IncomeExpenseManager::showAllExpenses()
+{
+    system("cls");
+    if (!expenses.empty())
+    {
+        cout << "             >>> EXPENSES <<<" << endl;
+        cout << "-----------------------------------------------" << endl;
+        for (vector <Entry> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++)
+        {
+            showEntryData(*itr);
+        }
+        cout << endl;
+    }
+    else
+    {
+        cout << endl << "No expenses registered." << endl << endl;
+    }
+    system("pause");
+}
+
+void IncomeExpenseManager::showEntryData(Entry entry)
+{
+    cout << endl << "Id:                 " << entry.getId() << endl;
+    cout << "Description:               " << entry.getDescription()<< endl;
+    cout << "Date:           " << entry.getDate()<< endl;
+    cout << "Numer telefonu:     " << entry.getAmount() << endl;
+
 }

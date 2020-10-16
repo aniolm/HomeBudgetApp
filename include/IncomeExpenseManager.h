@@ -15,6 +15,8 @@ class IncomeExpenseManager
         IncomeExpenseManager(string incomeFileName, string expenseFileName);
         void addEntry(int loggedInUserId, int type);
         Entry inputNewEntryData(int loggedInUserId, int type);
+        void showAllIncomes();
+        void showAllExpenses();
 
 
 
@@ -26,6 +28,7 @@ class IncomeExpenseManager
         IncomeExpenseFile incomeFile;
         IncomeExpenseFile expenseFile;
 
+        void showEntryData(Entry entry);
 
 };
 

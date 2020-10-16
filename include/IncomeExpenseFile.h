@@ -20,6 +20,7 @@ class IncomeExpenseFile
         void setLastEntryId(int val) { lastEntryId = val; };
         void getLastEntryIdFromFile();
         void appendEntryToFile(Entry entry);
+        vector <Entry> loadEntriesFromFile();
 
 
     protected:
