@@ -15,13 +15,13 @@ void IncomeExpenseManager::addEntry(int loggedInUserId, int type)
     if(type==0)
     {
         incomes.push_back(entry);
-        //incomeFile.appendEntryToFile(entry);
+        incomeFile.appendEntryToFile(entry);
     }
 
     else if (type==1)
     {
         expenses.push_back(entry);
-        //expenseFile.appendEntryToFile(entry);
+        expenseFile.appendEntryToFile(entry);
     }
 
     else
@@ -38,12 +38,12 @@ Entry IncomeExpenseManager::inputNewEntryData(int loggedInUserId, int type)
 
     if(type==0)
     {
-        entry.setId(incomeFile.getLastEntryIdFromFile()+1);
+        entry.setId(incomeFile.getLastEntryId()+1);
     }
 
     else if (type==1)
     {
-        entry.setId(expenseFile.getLastEntryIdFromFile()+1);
+        entry.setId(expenseFile.getLastEntryId()+1);
     }
 
     else

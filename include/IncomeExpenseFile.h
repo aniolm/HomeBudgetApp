@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Markup.h"
 #include "User.h"
+#include "Entry.h"
 #include <vector>
 
 using std::string;
@@ -15,13 +16,18 @@ class IncomeExpenseFile
 {
     public:
         IncomeExpenseFile(string fileName);
-        int getLastEntryIdFromFile();
+        int getLastEntryId() { return lastEntryId; }
+        void setLastEntryId(int val) { lastEntryId = val; };
+        void getLastEntryIdFromFile();
+        void appendEntryToFile(Entry entry);
 
 
     protected:
 
     private:
         const string FILE_NAME;
+        int lastEntryId;
+
 
 };
 
