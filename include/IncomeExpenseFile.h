@@ -15,6 +15,7 @@ class IncomeExpenseFile
 {
     public:
         IncomeExpenseFile(string fileName);
+        int getLastEntryIdFromFile();
 
 
     protected:

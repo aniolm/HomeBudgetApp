@@ -8,9 +8,10 @@ int main()
 {
     UserManager userManager("UserFile.xml");
     //userManager.registerUser();
-    //userManager.userLogin();
+    userManager.userLogin();
     //userManager.changeUserPassword();
     IncomeExpenseManager incomeExpenseManager("IncomeFile.xml","ExpenseFile.xml");
-
+    incomeExpenseManager.addEntry(userManager.getLoggedInUserId(),0);
+    incomeExpenseManager.addEntry(userManager.getLoggedInUserId(),1);
     return 0;
 }

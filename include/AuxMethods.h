@@ -7,6 +7,8 @@
 
 using std::string;
 using std::cin;
+using std::cout;
+using std::endl;
 
 class AuxMethods
 {
@@ -15,6 +17,7 @@ class AuxMethods
         virtual ~AuxMethods();
         static string getLine();
         static string changeFirstLetterToCapital(string text);
+        static bool inputYesNo();
 
     protected:
 
