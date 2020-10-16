@@ -26,3 +26,27 @@ string AuxMethods::changeFirstLetterToCapital(string text)
     }
     return text;
 }
+
+bool AuxMethods::inputYesNo()
+{
+    string input = "";
+    char character  = {0};
+    cin.sync();
+    while (true)
+    {
+        getline(cin, input);
+
+        if ((input.length() == 1)&&((input[0] == 'y')||(input[0] == 'n')))
+        {
+            if(input[0] == 'y')
+                return true;
+            else
+                return false;
+        }
+        else
+        {
+            cout << "Invalid character. Please enter 'y' or 'n'."<< endl;
+        }
+
+    }
+}

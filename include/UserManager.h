@@ -15,6 +15,8 @@ class UserManager
 {
     public:
         UserManager(string userFileName);
+        int getLoggedInUserId() { return loggedInUserId; }
+        void setLoggedInUserId(int val) { loggedInUserId = val; }
         void loadUsersFromFile();
         void registerUser();
         void userLogin();
