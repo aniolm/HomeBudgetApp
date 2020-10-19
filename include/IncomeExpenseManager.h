@@ -22,6 +22,8 @@ class IncomeExpenseManager
         void showAllIncomes();
         void showAllExpenses();
         void showBalance();
+        IncomeExpenseFile incomeFile;
+        IncomeExpenseFile expenseFile;
 
 
 
@@ -31,8 +33,7 @@ class IncomeExpenseManager
     private:
         vector <Entry> incomes;
         vector <Entry> expenses;
-        IncomeExpenseFile incomeFile;
-        IncomeExpenseFile expenseFile;
+
 
         void showEntryData(Entry entry);
         int calculateBalance();

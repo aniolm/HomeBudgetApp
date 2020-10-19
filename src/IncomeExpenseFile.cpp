@@ -11,7 +11,7 @@ void IncomeExpenseFile::getLastEntryIdFromFile()
     int currentId = 0;
     CMarkup xml;
     xml.Load( FILE_NAME );
-    while ( xml.FindElem("ENTRY" ))
+    while ( xml.FindElem("ENTRY"))
     {
     xml.IntoElem();
 
@@ -19,6 +19,7 @@ void IncomeExpenseFile::getLastEntryIdFromFile()
     currentId = atoi( MCD_2PCSZ(xml.GetData()));
     if ( currentId  > lastId )
         lastId = currentId;
+    xml.OutOfElem();
     }
     lastEntryId=lastId;
     return;

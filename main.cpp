@@ -16,5 +16,7 @@ int main()
     incomeExpenseManager.showAllIncomes();
     incomeExpenseManager.showAllExpenses();
     incomeExpenseManager.showBalance();
+    //incomeExpenseManager.incomeFile.getLastEntryIdFromFile();
+    //cout<<incomeExpenseManager.incomeFile.getLastEntryId();
     return 0;
 }
