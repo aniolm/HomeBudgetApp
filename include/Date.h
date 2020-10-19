@@ -9,6 +9,7 @@ using std::stringstream;
 using std::cin;
 using std::cout;
 using std::string;
+using std::endl;
 
 class Date
 {
@@ -16,6 +17,7 @@ class Date
 
         static time_t getCurrentDate();
         static time_t enterDate();
+        static string convertToString(time_t date);
 
     protected:
 

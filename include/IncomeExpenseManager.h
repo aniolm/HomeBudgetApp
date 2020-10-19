@@ -6,8 +6,12 @@
 #include "Date.h"
 #include "Money.h"
 #include <vector>
+#include <iomanip>
 
 using std::vector;
+using std::setw;
+using std::left;
+using std::right;
 
 class IncomeExpenseManager
 {
@@ -17,6 +21,8 @@ class IncomeExpenseManager
         Entry inputNewEntryData(int loggedInUserId, int type);
         void showAllIncomes();
         void showAllExpenses();
+        void showBalance();
+
 
 
 
@@ -29,6 +35,8 @@ class IncomeExpenseManager
         IncomeExpenseFile expenseFile;
 
         void showEntryData(Entry entry);
+        int calculateBalance();
+        int sumAllEntries(const vector <Entry> &entries);
 
 };
 
