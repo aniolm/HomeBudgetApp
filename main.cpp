@@ -15,5 +15,6 @@ int main()
     incomeExpenseManager.addEntry(userManager.getLoggedInUserId(),1);
     incomeExpenseManager.showAllIncomes();
     incomeExpenseManager.showAllExpenses();
+    incomeExpenseManager.showBalance();
     return 0;
 }

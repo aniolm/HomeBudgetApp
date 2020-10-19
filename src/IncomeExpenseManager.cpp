@@ -91,11 +91,13 @@ Entry IncomeExpenseManager::inputNewEntryData(int loggedInUserId, int type)
 
 void IncomeExpenseManager::showAllIncomes()
 {
-    system("cls");
+
     if (!incomes.empty())
     {
-        cout << "             >>> INCOMES <<<" << endl;
-        cout << "-----------------------------------------------" << endl;
+        cout << "                              >>> INCOMES <<<                                   " <<endl;
+        cout << "--------------------------------------------------------------------------------" <<endl;
+        cout << "  ID                       DESCRIPTION                    DATE          AMOUNT  " <<endl;
+        cout << "--------------------------------------------------------------------------------" <<endl;
         for (vector <Entry> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++)
         {
             showEntryData(*itr);
@@ -106,16 +108,18 @@ void IncomeExpenseManager::showAllIncomes()
     {
         cout << endl << "No incomes registered." << endl << endl;
     }
-    system("pause");
+    //system("pause");
 }
 
 void IncomeExpenseManager::showAllExpenses()
 {
-    system("cls");
+
     if (!expenses.empty())
     {
-        cout << "             >>> EXPENSES <<<" << endl;
-        cout << "-----------------------------------------------" << endl;
+        cout << "                              >>> EXPENSES <<<                                  " <<endl;
+        cout << "--------------------------------------------------------------------------------" <<endl;
+        cout << "  ID                       DESCRIPTION                    DATE          AMOUNT  " <<endl;
+        cout << "--------------------------------------------------------------------------------" <<endl;
         for (vector <Entry> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++)
         {
             showEntryData(*itr);
@@ -126,14 +130,41 @@ void IncomeExpenseManager::showAllExpenses()
     {
         cout << endl << "No expenses registered." << endl << endl;
     }
-    system("pause");
+    //system("pause");
 }
 
 void IncomeExpenseManager::showEntryData(Entry entry)
 {
-    cout << endl << "Id:                 " << entry.getId() << endl;
-    cout << "Description:               " << entry.getDescription()<< endl;
-    cout << "Date:           " << entry.getDate()<< endl;
-    cout << "Numer telefonu:     " << entry.getAmount() << endl;
 
+    cout << setw(2)<<" ";
+    cout << setw(8) << left << entry.getId();
+    cout << setw(45) << left <<entry.getDescription();
+
+    cout << setw(13)<< left << Date::convertToString(entry.getDate());
+    cout << setw (10) << right <<Money::convertToString(entry.getAmount()) << endl;
+
+}
+
+int IncomeExpenseManager::sumAllEntries(const vector <Entry> &entries)
+{
+    int sum = 0;
+    for_each(entries.begin(), entries.end(),
+             [&](Entry entry){sum+= entry.getAmount();});
+    return sum;
+}
+
+int IncomeExpenseManager::calculateBalance()
+{
+    int balance=0;
+    balance=sumAllEntries(incomes)-sumAllEntries(expenses);
+    return balance;
+}
+
+void IncomeExpenseManager::showBalance()
+{
+    cout << "--------------------------------------------------------------------------------" <<endl;
+    cout << " Balance:";
+    cout <<setw(69)<<right<<Money::convertToString(calculateBalance())<<endl;
+
+    return;
 }

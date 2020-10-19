@@ -22,3 +22,17 @@ time_t Date::enterDate()
     timestamp = mktime(&t);
     return timestamp;
 }
+
+string Date::convertToString(time_t date)
+{
+    string dateInString;
+    struct tm* now;
+    stringstream ss;
+    now = localtime(&date);
+    ss << now->tm_mday << '-'
+    << (now->tm_mon + 1) << '-'
+    << (now->tm_year + 1900);
+    ss>>dateInString;
+    return dateInString;
+
+}
