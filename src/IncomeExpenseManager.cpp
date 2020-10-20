@@ -118,6 +118,7 @@ void IncomeExpenseManager::showBalanceSheet()
     showIncomes();
     showExpenses();
     showBalance();
+    system("pause");
 }
 
 
