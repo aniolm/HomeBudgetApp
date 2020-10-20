@@ -17,7 +17,7 @@ using std::right;
 class IncomeExpenseManager
 {
     public:
-        IncomeExpenseManager(string incomeFileName, string expenseFileName);
+        IncomeExpenseManager(string incomeFileName, string expenseFileName, int loggedInUserId);
         time_t getStartDate() { return startDate; };
         void setStartDate(time_t val) { startDate = val; };
         time_t getEndDate() { return endDate; };
