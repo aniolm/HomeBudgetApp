@@ -1,9 +1,9 @@
 #include "IncomeExpenseManager.h"
 
-IncomeExpenseManager::IncomeExpenseManager(string incomeFileName, string expenseFileName): incomeFile(incomeFileName), expenseFile(expenseFileName)
+IncomeExpenseManager::IncomeExpenseManager(string incomeFileName, string expenseFileName, int loggedInUserId): incomeFile(incomeFileName), expenseFile(expenseFileName)
 {
-   incomes=incomeFile.loadEntriesFromFile();
-   expenses=expenseFile.loadEntriesFromFile();
+   incomes=incomeFile.loadEntriesFromFile(loggedInUserId);
+   expenses=expenseFile.loadEntriesFromFile(loggedInUserId);
    startDate=0;
    endDate=99999999999;
 }
@@ -118,6 +118,7 @@ void IncomeExpenseManager::showBalanceSheet()
     showIncomes();
     showExpenses();
     showBalance();
+    system("pause");
 }
 
 

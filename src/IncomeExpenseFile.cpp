@@ -43,7 +43,7 @@ void IncomeExpenseFile::appendEntryToFile(Entry entry)
     return;
 }
 
-vector <Entry> IncomeExpenseFile::loadEntriesFromFile()
+vector <Entry> IncomeExpenseFile::loadEntriesFromFile(int loggedInUserId)
 {
     vector <Entry> entries;
     Entry entry;

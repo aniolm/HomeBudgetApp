@@ -18,6 +18,7 @@ class AuxMethods
         static string getLine();
         static string changeFirstLetterToCapital(string text);
         static bool inputYesNo();
+        static char inputCharacter();
 
     protected:
 
