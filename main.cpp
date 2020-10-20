@@ -1,6 +1,7 @@
 #include <iostream>
 #include "UserManager.h"
 #include "IncomeExpenseManager.h"
+#include "Date.h"
 
 using namespace std;
 
@@ -11,12 +12,10 @@ int main()
     userManager.userLogin();
     //userManager.changeUserPassword();
     IncomeExpenseManager incomeExpenseManager("IncomeFile.xml","ExpenseFile.xml");
-    incomeExpenseManager.addEntry(userManager.getLoggedInUserId(),0);
-    incomeExpenseManager.addEntry(userManager.getLoggedInUserId(),1);
-    incomeExpenseManager.showAllIncomes();
-    incomeExpenseManager.showAllExpenses();
-    incomeExpenseManager.showBalance();
-    //incomeExpenseManager.incomeFile.getLastEntryIdFromFile();
-    //cout<<incomeExpenseManager.incomeFile.getLastEntryId();
+
+    //incomeExpenseManager.addEntry(userManager.getLoggedInUserId(),0);
+    //incomeExpenseManager.addEntry(userManager.getLoggedInUserId(),1);
+
+    incomeExpenseManager.showBalanceSheetFromActualMonth();
     return 0;
 }

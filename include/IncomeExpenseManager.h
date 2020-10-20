@@ -7,6 +7,7 @@
 #include "Money.h"
 #include <vector>
 #include <iomanip>
+#include <algorithm>
 
 using std::vector;
 using std::setw;
@@ -17,27 +18,35 @@ class IncomeExpenseManager
 {
     public:
         IncomeExpenseManager(string incomeFileName, string expenseFileName);
+        time_t getStartDate() { return startDate; };
+        void setStartDate(time_t val) { startDate = val; };
+        time_t getEndDate() { return endDate; };
+        void setEndDate(time_t val) { endDate = val; };
         void addEntry(int loggedInUserId, int type);
-        Entry inputNewEntryData(int loggedInUserId, int type);
-        void showAllIncomes();
-        void showAllExpenses();
-        void showBalance();
-        IncomeExpenseFile incomeFile;
-        IncomeExpenseFile expenseFile;
-
-
-
+        void showBalanceSheetFromActualMonth();
+        void showBalanceSheetFromPreviousMonth();
+        void showBalanceSheetFromGivenPeriod();
 
     protected:
 
     private:
         vector <Entry> incomes;
         vector <Entry> expenses;
+        IncomeExpenseFile incomeFile;
+        IncomeExpenseFile expenseFile;
+        time_t startDate;
+        time_t endDate;
 
-
+        Entry inputNewEntryData(int loggedInUserId, int type);
         void showEntryData(Entry entry);
         int calculateBalance();
         int sumAllEntries(const vector <Entry> &entries);
+        vector <Entry> getEntriesFromSelectedPeriod(const vector<Entry>  &entries);
+        void showIncomes();
+        void showExpenses();
+        void showBalance();
+        void showBalanceSheet();
+
 
 };
 

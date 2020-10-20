@@ -4,6 +4,8 @@ IncomeExpenseManager::IncomeExpenseManager(string incomeFileName, string expense
 {
    incomes=incomeFile.loadEntriesFromFile();
    expenses=expenseFile.loadEntriesFromFile();
+   startDate=0;
+   endDate=99999999999;
 }
 
 void IncomeExpenseManager::addEntry(int loggedInUserId, int type)
@@ -56,7 +58,6 @@ Entry IncomeExpenseManager::inputNewEntryData(int loggedInUserId, int type)
     }
 
     entry.setUserId(loggedInUserId);
-
     entry.setType(type);
 
     if(type==0)
@@ -70,8 +71,6 @@ Entry IncomeExpenseManager::inputNewEntryData(int loggedInUserId, int type)
     }
 
     entry.setDescription(AuxMethods::getLine());
-
-
     entry.setAmount(Money::enterAmount());
 
     cout << "Save with current date/time? (y/n)";
@@ -89,16 +88,49 @@ Entry IncomeExpenseManager::inputNewEntryData(int loggedInUserId, int type)
     return entry;
 }
 
-void IncomeExpenseManager::showAllIncomes()
-{
 
-    if (!incomes.empty())
+
+void IncomeExpenseManager::showBalanceSheetFromActualMonth()
+{
+    setStartDate(1602975600);
+    setEndDate(1603133173);
+    showBalanceSheet();
+
+}
+
+void IncomeExpenseManager::showBalanceSheetFromPreviousMonth()
+{
+    setStartDate(1602975600);
+    setEndDate(1603133173);
+    showBalanceSheet();
+}
+
+void IncomeExpenseManager::showBalanceSheetFromGivenPeriod()
+{
+    setStartDate(1602975600);
+    setEndDate(1603133173);
+    showBalanceSheet();
+
+}
+
+void IncomeExpenseManager::showBalanceSheet()
+{
+    showIncomes();
+    showExpenses();
+    showBalance();
+}
+
+
+void IncomeExpenseManager::showIncomes()
+{
+    vector<Entry> selectedIncomes = getEntriesFromSelectedPeriod(incomes);
+    if (!selectedIncomes.empty())
     {
         cout << "                              >>> INCOMES <<<                                   " <<endl;
         cout << "--------------------------------------------------------------------------------" <<endl;
         cout << "  ID                       DESCRIPTION                    DATE          AMOUNT  " <<endl;
         cout << "--------------------------------------------------------------------------------" <<endl;
-        for (vector <Entry> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++)
+        for (vector <Entry> :: iterator itr = selectedIncomes.begin(); itr != selectedIncomes.end(); itr++)
         {
             showEntryData(*itr);
         }
@@ -111,16 +143,16 @@ void IncomeExpenseManager::showAllIncomes()
     //system("pause");
 }
 
-void IncomeExpenseManager::showAllExpenses()
+void IncomeExpenseManager::showExpenses()
 {
-
-    if (!expenses.empty())
+    vector<Entry> selectedExpenses = getEntriesFromSelectedPeriod(expenses);
+    if (!selectedExpenses.empty())
     {
         cout << "                              >>> EXPENSES <<<                                  " <<endl;
         cout << "--------------------------------------------------------------------------------" <<endl;
         cout << "  ID                       DESCRIPTION                    DATE          AMOUNT  " <<endl;
         cout << "--------------------------------------------------------------------------------" <<endl;
-        for (vector <Entry> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++)
+        for (vector <Entry> :: iterator itr = selectedExpenses.begin(); itr != selectedExpenses.end(); itr++)
         {
             showEntryData(*itr);
         }
@@ -128,9 +160,18 @@ void IncomeExpenseManager::showAllExpenses()
     }
     else
     {
-        cout << endl << "No expenses registered." << endl << endl;
+        cout << endl << "No expenses registered for this period." << endl << endl;
     }
     //system("pause");
+}
+
+vector <Entry> IncomeExpenseManager::getEntriesFromSelectedPeriod( const vector<Entry> &entries)
+{
+    vector<Entry> selectedEntries;
+    copy_if(entries.begin(), entries.end(), back_inserter(selectedEntries),
+            [=](Entry entry){return ((entry.getDate()>=startDate)&&(entry.getDate()<=endDate));});
+
+    return selectedEntries;
 }
 
 void IncomeExpenseManager::showEntryData(Entry entry)
@@ -156,7 +197,7 @@ int IncomeExpenseManager::sumAllEntries(const vector <Entry> &entries)
 int IncomeExpenseManager::calculateBalance()
 {
     int balance=0;
-    balance=sumAllEntries(incomes)-sumAllEntries(expenses);
+    balance=sumAllEntries(getEntriesFromSelectedPeriod(incomes))-sumAllEntries(getEntriesFromSelectedPeriod(expenses));
     return balance;
 }
 
