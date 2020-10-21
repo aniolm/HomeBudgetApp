@@ -92,35 +92,66 @@ Entry IncomeExpenseManager::inputNewEntryData(int loggedInUserId, int type)
 
 void IncomeExpenseManager::showBalanceSheetFromActualMonth()
 {
-    setStartDate(1602975600);
-    setEndDate(1603133173);
+    int year = (Date::getCurrentYear());
+    int month = (Date::getCurrentMonth());
+    struct tm startDate{};
+    startDate.tm_year = (year-1900);
+    startDate.tm_mon = (month-1);
+    startDate.tm_mday = 1;
+
+    struct tm endDate{};
+    endDate.tm_year = (year-1900);
+    endDate.tm_mon = (month-1);
+    endDate.tm_mday = (Date::getNumberOfDays(month, year));
+
+    setStartDate(mktime(&startDate));
+    setEndDate(mktime(&endDate));
     showBalanceSheet();
 
 }
 
 void IncomeExpenseManager::showBalanceSheetFromPreviousMonth()
 {
-    setStartDate(1602975600);
-    setEndDate(1603133173);
+    int year = (Date::getPreviousYear());
+    int month = (Date::getPreviousMonth());
+    struct tm startDate{};
+    startDate.tm_year = (year-1900);
+    startDate.tm_mon = (month-1);
+    startDate.tm_mday = 1;
+
+    struct tm endDate{};
+    endDate.tm_year = (year-1900);
+    endDate.tm_mon = (month-1);
+    endDate.tm_mday = (Date::getNumberOfDays(month, year));
+
+    setStartDate(mktime(&startDate));
+    setEndDate(mktime(&endDate));
     showBalanceSheet();
 }
 
 void IncomeExpenseManager::showBalanceSheetFromGivenPeriod()
 {
-    setStartDate(1602975600);
-    setEndDate(1603133173);
+    setStartDate((Date::enterDate()));
+    setEndDate((Date::enterDate()));
     showBalanceSheet();
 
 }
 
 void IncomeExpenseManager::showBalanceSheet()
 {
+    showTimePeriod();
     showIncomes();
     showExpenses();
     showBalance();
     system("pause");
 }
 
+
+void IncomeExpenseManager::showTimePeriod()
+{
+    cout<<endl;
+    cout << "Selected period:  "<<(Date::convertToString(startDate))<<" - "<<(Date::convertToString(endDate))<<endl<<endl;
+}
 
 void IncomeExpenseManager::showIncomes()
 {
@@ -139,7 +170,7 @@ void IncomeExpenseManager::showIncomes()
     }
     else
     {
-        cout << endl << "No incomes registered." << endl << endl;
+        cout << endl << "No incomes registered for selected period." << endl << endl;
     }
     //system("pause");
 }
@@ -161,7 +192,7 @@ void IncomeExpenseManager::showExpenses()
     }
     else
     {
-        cout << endl << "No expenses registered for this period." << endl << endl;
+        cout << endl << "No expenses registered for selected period." << endl << endl;
     }
     //system("pause");
 }
@@ -206,7 +237,7 @@ void IncomeExpenseManager::showBalance()
 {
     cout << "--------------------------------------------------------------------------------" <<endl;
     cout << " Balance:";
-    cout <<setw(69)<<right<<Money::convertToString(calculateBalance())<<endl;
+    cout <<setw(69)<<right<<Money::convertToString(calculateBalance())<<endl<<endl;
 
     return;
 }

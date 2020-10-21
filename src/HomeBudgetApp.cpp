@@ -51,7 +51,7 @@ void HomeBudgetApp::showBalanceSheetFromActualMonth()
 
 void HomeBudgetApp::showBalanceSheetFromPreviousMonth()
 {
-    incomeExpenseManager->showBalanceSheetFromActualMonth();
+    incomeExpenseManager->showBalanceSheetFromPreviousMonth();
 }
 
 void HomeBudgetApp::showBalanceSheetFromGivenPeriod()
@@ -87,7 +87,7 @@ char HomeBudgetApp::selectMainMenuOption()
 }
 char HomeBudgetApp::selectInitialMenuOption()
 {
-    char choice;
+    char selection;
 
     system("cls");
     cout << ">>> HOME BUDGET APP 1.0 <<<" << endl;
@@ -97,9 +97,9 @@ char HomeBudgetApp::selectInitialMenuOption()
     cout << "9. Exit" << endl;
     cout << "---------------------------" << endl;
     cout << "Enter number: ";
-    choice = AuxMethods::inputCharacter();
+    selection = AuxMethods::inputCharacter();
 
-    return choice;
+    return selection;
 }
 
 bool HomeBudgetApp::isUserLoggedIn()

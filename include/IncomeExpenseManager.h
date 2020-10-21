@@ -8,6 +8,7 @@
 #include <vector>
 #include <iomanip>
 #include <algorithm>
+#include <ctime>
 
 using std::vector;
 using std::setw;
@@ -42,6 +43,7 @@ class IncomeExpenseManager
         int calculateBalance();
         int sumAllEntries(const vector <Entry> &entries);
         vector <Entry> getEntriesFromSelectedPeriod(const vector<Entry>  &entries);
+        void showTimePeriod();
         void showIncomes();
         void showExpenses();
         void showBalance();
