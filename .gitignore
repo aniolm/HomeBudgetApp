@@ -1,6 +1,8 @@
 /obj
 /bin
-HomeBudgetApp.*
+HomeBudgetApp.cbp
+HomeBudgetApp.depend
+HomeBudgetApp.layout
 UserFile.xml
 IncomeFile.xml
 ExpenseFile.xml
