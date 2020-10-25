@@ -5,20 +5,25 @@ IncomeExpenseFile::IncomeExpenseFile(string fileName):FILE_NAME(fileName), lastE
 
 }
 
-void IncomeExpenseFile::getLastEntryIdFromFile()
+void IncomeExpenseFile::getLastEntryIdFromFile(int loggedInUserId)
 {
     int lastId = 0;
     int currentId = 0;
+    int userId = 0;
     CMarkup xml;
     xml.Load( FILE_NAME );
     while ( xml.FindElem("ENTRY"))
     {
         xml.IntoElem();
-
-        xml.FindElem( "ID" );
-        currentId = atoi( MCD_2PCSZ(xml.GetData()));
-        if ( currentId  > lastId )
+        xml.FindElem( "USERID" );
+        userId = atoi( MCD_2PCSZ(xml.GetData()) );
+        if (userId == loggedInUserId)
+        {
+            xml.FindElem( "ID" );
+            currentId = atoi( MCD_2PCSZ(xml.GetData()));
+            if ( currentId  > lastId )
             lastId = currentId;
+        }
         xml.OutOfElem();
     }
     lastEntryId=lastId;
@@ -81,7 +86,7 @@ vector <Entry> IncomeExpenseFile::loadEntriesFromFile(int loggedInUserId)
         xml.OutOfElem();
 
     }
-    system("pause");
+
     return entries;
 
 }

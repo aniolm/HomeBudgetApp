@@ -18,7 +18,7 @@ class IncomeExpenseFile
         IncomeExpenseFile(string fileName);
         int getLastEntryId() { return lastEntryId; }
         void setLastEntryId(int val) { lastEntryId = val; };
-        void getLastEntryIdFromFile();
+        void getLastEntryIdFromFile(int loggedInUserId);
         void appendEntryToFile(Entry entry);
         vector <Entry> loadEntriesFromFile(int loggedInUserId);
 

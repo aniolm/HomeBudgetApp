@@ -41,13 +41,13 @@ Entry IncomeExpenseManager::inputNewEntryData(int loggedInUserId, int type)
 
     if(type==0)
     {
-        incomeFile.getLastEntryIdFromFile();
+        incomeFile.getLastEntryIdFromFile(loggedInUserId);
         entry.setId(incomeFile.getLastEntryId()+1);
     }
 
     else if (type==1)
     {
-        expenseFile.getLastEntryIdFromFile();
+        expenseFile.getLastEntryIdFromFile(loggedInUserId);
         entry.setId(expenseFile.getLastEntryId()+1);
     }
 
