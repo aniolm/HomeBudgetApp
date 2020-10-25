@@ -56,16 +56,46 @@ int Date::getPreviousYear()
 
 time_t Date::enterDate()
 {
-    tm t = {};
+    struct tm time = {};
     time_t timestamp;
     string date = "";
+    int year;
+    int month;
+    int numberOfDays;
+
 
     cout<<"Enter date in the following format (dd-mm-yyyy):";
     cin>>date;
-    stringstream ss;
-    ss << date;
-    ss >> get_time(&t, "%d-%m-%Y");
-    timestamp = mktime(&t);
+    while(true)
+    {
+        stringstream ss;
+        ss << date;
+        ss >> get_time(&time, "%d-%m-%Y");
+
+        if (ss.fail())
+        {
+            cout << "Invalid date. Please use the following format (dd-mm-yyyy):";
+            cin>>date;
+        }
+        else
+        {
+            year = time.tm_year+1900;
+            month = time.tm_mon+1;
+            numberOfDays =  getNumberOfDays(month, year);
+            if ((time.tm_mday >=1)&&(time.tm_mday <= numberOfDays))
+            {
+                timestamp = mktime(&time);
+                break;
+            }
+            else
+            {
+                cout << "Invalid day of the month. Please enter new date using the following format (dd-mm-yyyy):";
+                cin>>date;
+            }
+
+        }
+    }
+
     return timestamp;
 }
 

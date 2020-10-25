@@ -32,8 +32,8 @@ void IncomeExpenseFile::appendEntryToFile(Entry entry)
 
     xml.AddElem( "ENTRY" );
     xml.IntoElem();
-    xml.AddElem("ID", entry.getId());
     xml.AddElem( "USERID", entry.getUserId());
+    xml.AddElem("ID", entry.getId());
     xml.AddElem( "DESCRIPTION", entry.getDescription());
     xml.AddElem("AMOUNT", entry.getAmount());
     xml.AddElem( "DATE", entry.getDate());
@@ -47,12 +47,13 @@ vector <Entry> IncomeExpenseFile::loadEntriesFromFile(int loggedInUserId)
 {
     vector <Entry> entries;
     int userId;
-    Entry entry;
+
     CMarkup xml;
     xml.Load( FILE_NAME );
 
     while ( xml.FindElem("ENTRY" ))
     {
+        Entry entry{};
         xml.IntoElem();
         xml.FindElem( "USERID" );
         userId = atoi( MCD_2PCSZ(xml.GetData()) );
@@ -60,8 +61,7 @@ vector <Entry> IncomeExpenseFile::loadEntriesFromFile(int loggedInUserId)
         {
             entry.setUserId( userId );
             xml.FindElem( "ID" );
-            entry.setId(  atoi( MCD_2PCSZ(xml.GetData()) ) );
-
+            entry.setId(  atoi( MCD_2PCSZ(xml.GetData()) ) ) ;
             if (FILE_NAME=="IncomeFile.xml")
             {
                 entry.setType(0);
@@ -70,7 +70,6 @@ vector <Entry> IncomeExpenseFile::loadEntriesFromFile(int loggedInUserId)
             {
                 entry.setType(1);
             }
-
             xml.FindElem( "DESCRIPTION" );
             entry.setDescription( xml.GetData() );
             xml.FindElem( "AMOUNT" );
@@ -82,7 +81,9 @@ vector <Entry> IncomeExpenseFile::loadEntriesFromFile(int loggedInUserId)
         xml.OutOfElem();
 
     }
-
+    system("pause");
     return entries;
 
 }
+
+

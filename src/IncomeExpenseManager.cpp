@@ -214,7 +214,7 @@ void IncomeExpenseManager::showEntryData(Entry entry)
     cout << setw(45) << left <<entry.getDescription();
 
     cout << setw(13)<< left << Date::convertToString(entry.getDate());
-    cout << setw (10) << right <<Money::convertToString(entry.getAmount()) << endl;
+    cout << setw (10) << right << Money::convertToString(entry.getAmount()) << endl;
 
 }
 

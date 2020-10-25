@@ -65,7 +65,7 @@ char AuxMethods::inputCharacter()
             character = input[0];
             break;
         }
-        cout << "It is not a single character. Please choose again." << endl;
+        cout << "Invalid character. Please choose again." << endl;
     }
     return character;
 }
