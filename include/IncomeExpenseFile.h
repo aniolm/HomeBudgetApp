@@ -16,9 +16,7 @@ class IncomeExpenseFile
 {
     public:
         IncomeExpenseFile(string fileName);
-        int getLastEntryId() { return lastEntryId; }
-        void setLastEntryId(int val) { lastEntryId = val; };
-        void getLastEntryIdFromFile(int loggedInUserId);
+        //void getLastEntryIdFromFile(int loggedInUserId);
         void appendEntryToFile(Entry entry);
         vector <Entry> loadEntriesFromFile(int loggedInUserId);
 
@@ -27,7 +25,7 @@ class IncomeExpenseFile
 
     private:
         const string FILE_NAME;
-        int lastEntryId;
+
 
 
 };

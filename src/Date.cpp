@@ -63,8 +63,6 @@ time_t Date::enterDate()
     int month;
     int numberOfDays;
 
-
-    cout<<"Enter date in the following format (dd-mm-yyyy):";
     cin>>date;
     while(true)
     {
@@ -74,7 +72,7 @@ time_t Date::enterDate()
 
         if (ss.fail())
         {
-            cout << "Invalid date. Please use the following format (dd-mm-yyyy):";
+            cout << "Invalid date. Please use the following format (dd-mm-yyyy): ";
             cin>>date;
         }
         else
@@ -89,7 +87,7 @@ time_t Date::enterDate()
             }
             else
             {
-                cout << "Invalid day of the month. Please enter new date using the following format (dd-mm-yyyy):";
+                cout << "Invalid day of the month. Please enter new date using the following format (dd-mm-yyyy): ";
                 cin>>date;
             }
 

@@ -1,11 +1,8 @@
 #include "User.h"
 
-User::User()
+User::User(): id(0), name(""), surname(""), username(""), password("")
 {
-    //ctor
+
 }
 
-User::~User()
-{
-    //dtor
-}
+

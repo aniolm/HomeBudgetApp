@@ -19,6 +19,8 @@ class IncomeExpenseManager
 {
     public:
         IncomeExpenseManager(string incomeFileName, string expenseFileName, int loggedInUserId);
+        int getLastEntryId() { return lastEntryId; }
+        void setLastEntryId(int val) { lastEntryId = val; };
         time_t getStartDate() { return startDate; };
         void setStartDate(time_t val) { startDate = val; };
         time_t getEndDate() { return endDate; };
@@ -35,10 +37,12 @@ class IncomeExpenseManager
         vector <Entry> expenses;
         IncomeExpenseFile incomeFile;
         IncomeExpenseFile expenseFile;
+        int lastEntryId;
         time_t startDate;
         time_t endDate;
 
         Entry inputNewEntryData(int loggedInUserId, int type);
+        void findLastEntryId(vector<Entry> entries);
         void showEntryData(Entry entry);
         int calculateBalance();
         int sumAllEntries(const vector <Entry> &entries);

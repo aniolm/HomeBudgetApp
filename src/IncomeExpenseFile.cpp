@@ -1,11 +1,11 @@
 #include "IncomeExpenseFile.h"
 
-IncomeExpenseFile::IncomeExpenseFile(string fileName):FILE_NAME(fileName), lastEntryId(0)
+IncomeExpenseFile::IncomeExpenseFile(string fileName):FILE_NAME(fileName)
 {
 
 }
 
-void IncomeExpenseFile::getLastEntryIdFromFile(int loggedInUserId)
+/*void IncomeExpenseFile::getLastEntryIdFromFile(int loggedInUserId)
 {
     int lastId = 0;
     int currentId = 0;
@@ -29,7 +29,7 @@ void IncomeExpenseFile::getLastEntryIdFromFile(int loggedInUserId)
     lastEntryId=lastId;
     return;
 }
-
+*/
 void IncomeExpenseFile::appendEntryToFile(Entry entry)
 {
     CMarkup xml;

@@ -9,7 +9,6 @@ class User
 {
     public:
         User();
-        virtual ~User();
 
         int getId() { return id; }
         void setId(int val) { id = val; }

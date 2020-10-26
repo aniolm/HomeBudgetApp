@@ -1,11 +1,11 @@
 #include "IncomeExpenseManager.h"
 
-IncomeExpenseManager::IncomeExpenseManager(string incomeFileName, string expenseFileName, int loggedInUserId): incomeFile(incomeFileName), expenseFile(expenseFileName)
+IncomeExpenseManager::IncomeExpenseManager(string incomeFileName, string expenseFileName, int loggedInUserId): incomeFile(incomeFileName),
+                      expenseFile(expenseFileName), lastEntryId(0), startDate(0), endDate(99999999999)
+
 {
    incomes=incomeFile.loadEntriesFromFile(loggedInUserId);
    expenses=expenseFile.loadEntriesFromFile(loggedInUserId);
-   startDate=0;
-   endDate=99999999999;
 }
 
 void IncomeExpenseManager::addEntry(int loggedInUserId, int type)
@@ -41,14 +41,14 @@ Entry IncomeExpenseManager::inputNewEntryData(int loggedInUserId, int type)
 
     if(type==0)
     {
-        incomeFile.getLastEntryIdFromFile(loggedInUserId);
-        entry.setId(incomeFile.getLastEntryId()+1);
+        findLastEntryId(incomes);
+        entry.setId(lastEntryId+1);
     }
 
     else if (type==1)
     {
-        expenseFile.getLastEntryIdFromFile(loggedInUserId);
-        entry.setId(expenseFile.getLastEntryId()+1);
+        findLastEntryId(expenses);
+        entry.setId(lastEntryId+1);
     }
 
     else
@@ -71,9 +71,10 @@ Entry IncomeExpenseManager::inputNewEntryData(int loggedInUserId, int type)
     }
 
     entry.setDescription(AuxMethods::getLine());
+    cout<<endl;
     entry.setAmount(Money::enterAmount());
 
-    cout << "Save with current date/time? (y/n)";
+    cout << "Save new entry with the current date? (y/n): ";
 
     if (AuxMethods::inputYesNo())
     {
@@ -82,6 +83,8 @@ Entry IncomeExpenseManager::inputNewEntryData(int loggedInUserId, int type)
 
     else
     {
+        cout<<endl;
+        cout <<"Enter new date using format 'dd-mm-yyyy': ";
         entry.setDate(Date::enterDate());
     }
 
@@ -131,7 +134,10 @@ void IncomeExpenseManager::showBalanceSheetFromPreviousMonth()
 
 void IncomeExpenseManager::showBalanceSheetFromGivenPeriod()
 {
+    cout<<endl;
+    cout<<"Enter start date using format 'dd-mm-yyyy': ";
     setStartDate((Date::enterDate()));
+    cout<<"Enter end date using format 'dd-mm-yyyy': ";
     setEndDate((Date::enterDate()));
     showBalanceSheet();
 
@@ -239,5 +245,21 @@ void IncomeExpenseManager::showBalance()
     cout << " Balance:";
     cout <<setw(69)<<right<<Money::convertToString(calculateBalance())<<endl<<endl;
 
+    return;
+}
+
+
+void  IncomeExpenseManager::findLastEntryId(vector<Entry> entries)
+{
+    vector<Entry>::iterator highestId;
+    if (entries.size()>0)
+    {
+        highestId= max_element(entries.begin(), entries.end(),[](Entry& lhs, Entry& rhs){return lhs.getId() < rhs.getId();});
+        lastEntryId = (*highestId).getId();
+    }
+    else
+    {
+        lastEntryId=0;
+    }
     return;
 }

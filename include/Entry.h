@@ -7,6 +7,7 @@ using std::string;
 class Entry
 {
     public:
+        Entry();
         int getId() { return id; };
         void setId(int val) { id = val; };
         int getUserId() { return userId; };

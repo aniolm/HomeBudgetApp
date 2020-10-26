@@ -73,9 +73,9 @@ char HomeBudgetApp::selectMainMenuOption()
     cout << "---------------------------" << endl;
     cout << "1. Add income" << endl;
     cout << "2. Add expense" << endl;
-    cout << "3. Balance from current month " << endl;
-    cout << "4. Balance from previous month" << endl;
-    cout << "5. Balance from selected period" << endl;
+    cout << "3. Show balance (current month)" << endl;
+    cout << "4. Show balance (previous month)" << endl;
+    cout << "5. Show balance (selected period)" << endl;
     cout << "---------------------------" << endl;
     cout << "7. Change password" << endl;
     cout << "8. Log out" << endl;
