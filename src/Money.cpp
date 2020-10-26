@@ -5,7 +5,7 @@ int Money::enterAmount()
 {
     double amount;
     int amountInGrosze;
-    cout << "Enter the amount in PLN using the following format(0.00): ";
+    cout << "Enter the amount in PLN using format '0.00': ";
     cin >> amount;
     amountInGrosze = static_cast<int>(amount * 100);
     cout<<endl;
